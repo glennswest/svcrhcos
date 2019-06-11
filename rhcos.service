@@ -1,0 +1,13 @@
+[Unit]
+Description=svcrhcos container
+After=docker.service
+
+[Service]
+EnvironmentFile=/etc/svcenv
+Restart=always
+ExecStart=/usr/bin/docker start -a svcrhcos.${SVCDOMAIN}
+ExecStop=/usr/bin/docker stop -t 2 svcrhcos.${SVCDOMAIN}
+
+[Install]
+WantedBy=multi-user.target
+
